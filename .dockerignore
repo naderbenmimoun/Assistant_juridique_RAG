@@ -1,0 +1,6 @@
+.git
+.env
+.pytest_cache
+__pycache__
+tests
+RAG_CHATBOT_IMPLEMENTATION_PLAN (2).md

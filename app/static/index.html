@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#f8f9f6">
+    <title>Assistant juridique</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 6.5C9 4.5 5.5 4.5 3 5.5v14c2.5-1 6-1 9 1 3-2 6.5-2 9-1v-14c-2.5-1-6-1-9 1Zm0 0v14"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="m7 17 10-10M7 7h10v10"/></symbol>
+      <symbol id="icon-up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+      <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#message">Aller à la question</a>
+    <div class="app">
+      <header class="header">
+        <div class="brand" aria-label="Assistant juridique">
+          <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#icon-book"/></svg></span>
+          <span>Assistant juridique</span>
+        </div>
+        <div class="header-actions">
+          <button id="guide-open" class="text-button" type="button" aria-haspopup="dialog" aria-label="Guide d’utilisation">Guide<span class="guide-button-detail"> d’utilisation</span></button>
+          <button id="clear" class="new-conversation" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#icon-plus"/></svg>
+            <span>Nouvelle conversation</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace" aria-label="Recherche juridique">
+        <div id="conversation" class="conversation">
+          <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+            <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Le droit, plus accessible</p>
+            <h1 id="welcome-title">Vos questions.<br><span>Des réponses sourcées.</span></h1>
+            <p class="welcome-description">Explorez le corpus juridique français.<br> Posez votre question, puis consultez les textes qui éclairent la réponse.</p>
+
+            <div class="suggestions" aria-labelledby="suggestions-title">
+              <h2 id="suggestions-title">Un point de départ</h2>
+              <div class="suggestion-grid">
+                <button class="suggestion" type="button" data-question="Quelles sont les sanctions en cas de fraude aux prestations sociales ?">
+                  <span class="suggestion-topic">Prestations sociales</span>
+                  <span class="suggestion-question">Quelles sanctions en cas de fraude&nbsp;?</span>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+                </button>
+                <button class="suggestion" type="button" data-question="Quel est le délai pour déposer un recours contentieux ?">
+                  <span class="suggestion-topic">Recours administratifs</span>
+                  <span class="suggestion-question">Quel délai pour déposer un recours&nbsp;?</span>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+                </button>
+                <button class="suggestion" type="button" data-question="Quelle est la différence entre une loi et un décret ?">
+                  <span class="suggestion-topic">Comprendre les textes</span>
+                  <span class="suggestion-question">Quelle différence entre loi et décret&nbsp;?</span>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section id="messages" class="messages" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions" hidden></section>
+        </div>
+
+        <div class="composer-area">
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+          <form id="chat-form" class="composer">
+            <label class="sr-only" for="message">Votre question juridique</label>
+            <textarea id="message" maxlength="2000" rows="2" placeholder="Posez votre question juridique…" aria-describedby="input-hint" required></textarea>
+            <div class="composer-actions">
+              <span id="input-hint" class="input-hint">Entrée pour envoyer <span aria-hidden="true">·</span> Maj + Entrée pour une nouvelle ligne</span>
+              <span id="character-count" class="character-count" hidden></span>
+              <button id="send" class="send-button" type="submit" aria-label="Envoyer la question" title="Envoyer la question" disabled>
+                <svg class="icon send-icon" aria-hidden="true"><use href="#icon-up"/></svg>
+                <span class="stop-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+          <p class="disclaimer">Réponses informatives, à vérifier dans les sources. Évitez les données personnelles.</p>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="guide" class="guide" aria-labelledby="guide-title">
+      <div class="guide-header">
+        <h2 id="guide-title">Bien commencer</h2>
+        <button id="guide-close" class="icon-button" type="button" aria-label="Fermer le guide" autofocus><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+      </div>
+      <div class="guide-body">
+        <section><h3>Posez une question précise</h3><p>Indiquez le sujet et le contexte utile, sans données personnelles sensibles. Vous pouvez ensuite préciser votre demande dans la même conversation.</p></section>
+        <section><h3>Consultez les sources</h3><p>Les réponses s’appuient sur le corpus AgentPublic/dole. Dépliez les sources sous une réponse pour lire les extraits utilisés. Le corpus ne couvre pas toutes les situations ni nécessairement les dernières évolutions du droit.</p></section>
+        <section><h3>Gardez un regard critique</h3><p>L’IA peut faire des erreurs. Ses réponses ne constituent pas un conseil juridique personnalisé. Vérifiez les textes officiels ou consultez un professionnel qualifié.</p></section>
+        <p class="guide-note">Le traitement s’effectue localement. La conversation n’est pas enregistrée&nbsp;: elle disparaît au rechargement de la page ou au démarrage d’une nouvelle conversation.</p>
+      </div>
+    </dialog>
+  </body>
+</html>
